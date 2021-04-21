@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link_href %}
+{#    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>#}
+    <link href="{% static 'css/bootstrap-datepicker.min.css'%}" rel="stylesheet">
+
+{% endblock %}
+{% block title %}
+    <title>График тест</title>
+{% endblock %}
+
+{% block headpage %}
+    <h1 class="h3 mb-0 text-gray-800"> График устройства </h1>
+{% endblock %}
+
+{% block content %}
+    {#     <div class="container-fluid">#}
+    {##}
+    {#          <!-- Page Heading -->#}
+    {#          <h1 class="h3 mb-2 text-gray-800">Charts</h1>#}
+    {#          <p class="mb-4">#}
+    {#              Chart.js is a third party plugin that is used to generate the charts in this theme.#}
+    {#              The charts below have been customized - for further customization options, please visit the#}
+    {#              <a target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>#}
+    {##}
+    {#          <!-- Content Row -->#}
+    {#          <div class="row">#}
+    {##}
+    {#            <div class="col-xl-12 col-lg-7">#}
+    {##}
+    {#              <!-- Area Chart -->#}
+    {#              <div class="card shadow mb-4">#}
+    {#                <div class="card-header py-3">#}
+    {#                  <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>#}
+    {#                </div>#}
+    {#                <div class="card-body">#}
+    {#                  <div class="chart-area">#}
+    {#                    <canvas id="myAreaChart"></canvas>#}
+    {#                  </div>#}
+    {#                  <hr>#}
+    {#                  Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.#}
+    {#                </div>#}
+    {#              </div>#}
+    {##}
+    {#            </div>#}
+    {##}
+    {##}
+    {#          </div>#}
+    {##}
+    {#        </div>#}
+    <div class="container">
+        {% for item in name_val %}
+{#            <input type="button" onclick="addData(myBarChart)" value="{{ items}}">#}
+            <input type="button" onclick="testVal('{{ item }}')" value="{{ item }}">
+
+        {% endfor %}
+
+        <br/>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <!--       Chart.js Canvas Tag -->
+                <canvas id="barChart"></canvas>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input data-date-format="dd/mm/yyyy" id="datepicker" value="123">
+
+        <br>
+        <input class="btn btn-primary form-control" type="submit" value="Отправить">
+    </form>
+
+{% endblock %}
+
+{% block script_footer %}
+    <script>
+        var name_y = {{ date_val|safe }};
+        var valVal0 = {{ values_val0|safe }};
+        var test_var = {{ test_val|safe }};
+        var name_val = {{ name_val|safe }}
+    </script>
+    {#    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>#}
+    <script src="{% static 'js/chartstest.js' %}"></script>
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>#}
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+    <script type="text/javascript">
+    $('#datepicker').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker1').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+</script>
+{% endblock %}
+

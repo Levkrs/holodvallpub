@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IHRlc3RrbXoyMzM0?=
+From: django@geekshop.local
+To: kmztex@yandex.ru
+Date: Wed, 27 Jan 2021 07:04:07 -0000
+Message-ID: <161173104796.3066.11429607185458276982@1.0.0.127.in-addr.arpa>
+
+Для подтверждения учетной записи testkmz2334 на портале http://localhost:8000 перейдите по ссылке: 
+http://localhost:8000/auth/verify/kmztex@yandex.ru/2d16fdaa0c13a03a4938f16d9ac5f4c508d21556/
+-------------------------------------------------------------------------------

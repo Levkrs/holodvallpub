@@ -1,0 +1,21 @@
+{% load i18n %}
+{% blocktrans %}
+    <!DOCTYPE html>
+    Добрый день.    Сообщение о подтверждении учетной записи с {{ domain }} для {{ username }}:
+{% endblocktrans %}
+
+{% block reset_link %}
+
+    <html lang="en">
+
+    <head>
+        <body>
+
+        <h1>Для подтверждения учетной записи перейдите по ссылке ниже:</h1>
+        </body>
+
+    <span> {{ domain }}{{verlink}} </span>
+    </head>
+    </html>
+
+{% endblock %}

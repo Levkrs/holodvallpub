@@ -1,0 +1,33 @@
+{% extends 'clear_body.html' %}
+{% load static %}
+
+
+{% block title %}
+     <title>Регистрация</title>
+{% endblock %}
+
+{% block header_content %}
+
+    <h1 class="h3 mb-0 text-gray-800">Регистрация</h1>
+
+{% endblock %}
+
+{% block content %}
+    <div class="card-body">
+        <form class="form-horizontal" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <input class="btn btn-primary form-control" type="submit" value="Зарегистрироваться">
+        </form>
+        <br>
+        <a href="{% url 'authapp:login' %}"
+           class="btn btn-primary form-control">
+            Выход
+        </a>
+    </div>
+{% endblock %}
+
+{% block script_footer %}
+
+{% endblock %}

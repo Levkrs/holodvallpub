@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Главная</title>
+{% endblock %}
+
+{% block content %}
+    {% if menudevicelist.count != 0%}
+        <spna>Добро пожаловать</spna>
+        {% else %}
+         <span>Добро пожаловать. Для начала зарегистрируйте устройство.<a class="nav-link collapse-item" href="{% url 'clientdata:registerdevice' %}"> Регистрация устройства</a>
+            </span>
+    {% endif %}
+
+{% endblock %}
+
+{% block headpage %}
+                         <h1 class="h3 mb-0 text-gray-800">Главная страница</h1>
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_tags %}
+
+{% block title %}
+    <title>Table</title>
+
+{% endblock %}
+{% block link_href %}
+
+    <link href="{% static 'js/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block headpage %}
+    <h1 class="h3 mb-0 text-gray-800">Табличные данные для {{ imei }} </h1>
+{% endblock %}
+
+{% block footer_1 %}
+    <h6 class="m-0 font-weight-bold text-primary"> Статус устройства : </h6>
+{% endblock %}
+
+{% block content %}
+    <span> Online data: <span id="indicator" class=""></span>
+    </span>
+    {#    <span id="onilne_val1">{{ device }}</span>#}
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-header" id="header_table_online" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    {% for namerow in rowname %}
+                        <th rowspan="1" colspan="1">{{ namerow }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                    {% for td in valname %}
+                            <td id="online_{{ valname|return_val_name:forloop.counter }}"> -- </td>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <span>Выберите период:</span>
+    <br>
+    <br>
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <br>
+        <input class="btn btn-primary form-control" type="submit" value="Применить">
+    </form>
+
+    <!-- Формирование таблицы -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    {% for namerow in rowname %}
+                        <th rowspan="1" colspan="1">{{ namerow }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for el in  device %}
+                    <tr role="row" class="odd">
+                        {% for foo in el %}
+                            <td class="sorting_1">{{ foo }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- -->
+{% endblock %}
+{% block script_footer %}
+    <script>
+        var imei = {{ imei|safe }};
+    </script>
+    <script>
+        var username_mqtt = 'device';
+        var password_mqtt = 'device';
+
+    </script>
+    <script src="{% static 'js/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    {#    <script src="vendor/datatables/jquery.dataTables.min.js"></script>#}
+    <script src="{% static 'js/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    {#    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>#}
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'js/mqtt/paho-mqtt.js' %}"></script>
+    <script src="{% static 'js/mqtt/mqtt_replace.js' %}"></script>
+    <script type="text/javascript">
+        $('#datepicker').datepicker({
+            weekStart: 1,
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('#datepicker1').datepicker({
+            weekStart: 1,
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true,
+        });
+    </script>
+    {#    <script src="js/demo/datatables-demo.js"></script>#}
+{% endblock %}

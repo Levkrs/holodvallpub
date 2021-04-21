@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Добавить устройство</title>
+{% endblock %}
+
+{% block headpage %}
+                         <h1 class="h3 mb-0 text-gray-800"> Добавить устройство </h1>
+{% endblock %}
+
+{% block content %}
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <input class="btn btn-primary form-control" type="submit" value="Сохранить">
+    </form>
+    <br>
+    <a href="{#% url 'auth:register' %#}"
+       class="btn btn-primary form-control">
+        Выход
+    </a>
+{% endblock %}
